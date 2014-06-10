@@ -79,6 +79,34 @@
 	}
 
 	function getWeatherCode($code) {
+		    //Missings :
+    /*
+     Extreme
+     ID	 Meaning
+     900	 tornado
+     901	 tropical storm
+     902	 hurricane
+     903	 cold
+     904	 hot
+     905	 windy
+     906	 hail
+     Additional
+     ID	 Meaning
+     950	 Setting
+     951	 Calm
+     952	 Light breeze
+     953	 Gentle Breeze
+     954	 Moderate breeze
+     955	 Fresh Breeze
+     956	 Strong breeze
+     957	 High wind, near gale
+     958	 Gale
+     959	 Severe Gale
+     960	 Storm
+     961	 Violent Storm
+     962	 Hurricane
+     
+     */
 		switch ($code) {
 			//Thunderstorm
 			case 200:
