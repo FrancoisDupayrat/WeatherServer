@@ -1,0 +1,16 @@
+{
+	"weather" : {
+		"url" : "http://api.openweathermap.org/data/2.5/weather",
+		"params" : [
+			"q=Evry,fr"
+		]
+	},
+	"forecast" : {
+		"url" : "http://api.openweathermap.org/data/2.5/forecast",
+		"params" : [
+			"q=Evry,fr",
+        	"cnt=16"
+		]
+	},
+	"APIParamName" : "APPID"
+}
