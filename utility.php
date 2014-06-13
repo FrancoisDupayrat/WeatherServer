@@ -75,7 +75,7 @@
 	}
 
 	function getAPIKeys() {
-		return getDataFromFile("pass.json", false);
+		return getDataFromFile("pass.json");
 	}
 
 	function getWeatherCode($code) {
