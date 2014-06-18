@@ -1,13 +1,17 @@
 <?php
-	function generateFinalUrl($myUrl, $parameters) {
+	function generateFinalUrl($myUrl, $parameters)
+	{
 		$finalUrl = $myUrl;
 		$nextSeparator = "?";
 
 		$arraySize = count($parameters);
 
-		if($arraySize > 0) {
-		    for($i=0;$i<$arraySize;$i++) {
-		        if(!empty($parameters[$i])) {
+		if($arraySize > 0)
+		{
+		    for($i=0;$i<$arraySize;$i++)
+		    {
+		        if(!empty($parameters[$i]))
+		        {
 		            $nextSeparator = ($i == 0) ? "?" : "&";
 		            
 		            $finalUrl .= $nextSeparator . $parameters[$i];
@@ -18,34 +22,42 @@
 		return $finalUrl;
 	}
 
-	function getDataFromFile($filename, $isRemote=false, $parse=true) {
+	function getDataFromFile($filename, $isRemote=false, $parse=true)
+	{
 		$fileExist = false;
 
-		if($isRemote) {
+		if($isRemote)
+		{
 			$headers = get_headers($filename);
 			$responseCode = $headers[0];
 			$fileExist = (strpos($responseCode,"200")) ? true : false ;
 		}
-		else if (!$isRemote && file_exists($filename) && is_readable ($filename)) {
+		else if (!$isRemote && file_exists($filename) && is_readable ($filename))
+		{
 			$fileExist = true;
 		}
 
-		if ($fileExist) {
+		if ($fileExist)
+		{
 			$dataString = file_get_contents($filename);
 
-			if($parse) {
+			if($parse)
+			{
 				$parsedData = json_decode($dataString, true);
 
-				switch (json_last_error()) {
+				switch (json_last_error())
+				{
 			        case JSON_ERROR_NONE:
 			            return $parsedData;
 			        break;
 			        default:
-			            return json_last_error();
+			            //return json_last_error();
+			        	return -1;
 			        break;
 			    }
 			}
-			else {
+			else
+			{
 				return $dataString;
 			}
 
@@ -54,18 +66,25 @@
 			return -1;
 	}
 
-	function saveDataToFile($data, $filename) {
-		if(!empty($data)) {
+	function saveDataToFile($data, $filename)
+	{
+		if(!empty($data))
+		{
 			$dataString = json_encode($data);
 
-			file_put_contents($filename, $dataString);
+			if(file_put_contents($filename, $dataString) === false)
+			{
+				return -1;
+			}
 
-			switch (json_last_error()) {
+			switch (json_last_error())
+			{
 		        case JSON_ERROR_NONE:
 		            return 0;
 		        break;
 		        default:
-		            return json_last_error();
+		            //return json_last_error();
+		        return -1;
 		        break;
 		    }
 
@@ -74,11 +93,13 @@
 			return -1;
 	}
 
-	function getAPIKeys() {
+	function getAPIKeys()
+	{
 		return getDataFromFile("pass.json");
 	}
 
-	function getWeatherCode($code) {
+	function getWeatherCode($code)
+	{
 		    //Missings :
     /*
      Extreme

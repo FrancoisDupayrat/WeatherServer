@@ -4,5 +4,27 @@
 
 	$weather = getDataFromFile("weather.json", false, false);
 
-	echo '{"weather":'.$weather.', "forecast":'.$forecast.'}';
+	$string = '{';
+
+	if($weather != -1)
+	{
+		$string.='"errorweather":"0","weather":'.$weather.',';
+	}
+	else
+	{
+		$string.='"errorweather":"1","weather":"",';
+	}
+
+	if($weather != -1)
+	{
+		$string.='"errorforecast":"0","forecast":'.$forecast.',';
+	}
+	else
+	{
+		$string.='"errorforecast":"1","forecast":""';
+	}
+
+	$string.='}';
+
+	echo $string;
 ?>
