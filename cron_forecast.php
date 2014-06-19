@@ -1,17 +1,17 @@
 <?php require_once("utility.php");
 
-	$keys = getAPIKeys();
+	$config = getConfig();
 
 	$openWeatherMapConfig = getDataFromFile("OpenWeatherMap.json");
 
-	if($keys != -1 || $openWeatherMapConfig != -1)
+	if($config != -1 || $openWeatherMapConfig != -1)
 	{
 		if(!empty($openWeatherMapConfig["forecast"]["params"]) &&
 			!empty($openWeatherMapConfig["APIParamName"]) &&
 			!empty($openWeatherMapConfig["forecast"]["url"]) &&
-			!empty($keys["OpenWeatherAPI"]))
+			!empty($config["OpenWeatherAPI"]))
 		{
-			$openWeatherMapConfig["forecast"]["params"][] = $openWeatherMapConfig["APIParamName"].'='.$keys["OpenWeatherAPI"];
+			$openWeatherMapConfig["forecast"]["params"][] = $openWeatherMapConfig["APIParamName"].'='.$config["OpenWeatherAPI"];
 
 			$url = generateFinalUrl($openWeatherMapConfig["forecast"]["url"], $openWeatherMapConfig["forecast"]["params"]);
 
@@ -44,6 +44,7 @@
 							else
 							{
 								//mail
+								//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing response');
 								break;
 							}
 
@@ -52,32 +53,35 @@
 						if(saveDataToFile($newObject, "forecast.json") == -1)
 						{
 							//mail
+							//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during saving file');
 						}
 					}
 					else
 					{
 						//mail
+						//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking data structure');
 					}
-
-
 				}
 				else
 				{
 					//mail
+					//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking response code api');
 				}
 			}
 			else
 			{
 				//mail
+				//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking if the api server respond');
 			}
 		}
 		else 
 		{
 			//mail
+			//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing the config file');
 		}
 	}
 	else
 	{
-		//mail
+		//fatal error
 	}
 ?>

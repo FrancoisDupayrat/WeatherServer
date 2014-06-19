@@ -84,7 +84,7 @@
 		        break;
 		        default:
 		            //return json_last_error();
-		        return -1;
+		        	return -1;
 		        break;
 		    }
 
@@ -93,7 +93,7 @@
 			return -1;
 	}
 
-	function getAPIKeys()
+	function getConfig()
 	{
 		return getDataFromFile("pass.json");
 	}

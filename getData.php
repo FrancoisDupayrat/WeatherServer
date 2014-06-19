@@ -17,7 +17,7 @@
 
 	if($weather != -1)
 	{
-		$string.='"errorforecast":"0","forecast":'.$forecast.',';
+		$string.='"errorforecast":"0","forecast":'.$forecast;
 	}
 	else
 	{
