@@ -1,0 +1,10 @@
+SetEnv PHP_VER 5_3
+
+Order Deny,Allow
+Deny from all
+Allow from 127.0.0.1
+
+<FilesMatch "cron_forecast.php|cron_weather.php|getData.php|index.php">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
