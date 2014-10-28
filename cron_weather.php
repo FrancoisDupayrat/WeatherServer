@@ -33,35 +33,35 @@
 						if(saveDataToFile($newObject, 'weather.json') == -1)
 						{
 							//mail
-							//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during saving the file');
+							mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during saving the file');
 						}
 					}
 					else
 					{
 						//mail
-						//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking the response validity');
+						mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking the response validity');
 					}
 				}
 				else
 				{
 					//mail
-					//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking response code api');
+					mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking response code api');
 				}
 			}
 			else
 			{
 				//mail
-				//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking if the api server respond');
+				mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during checking if the api server respond');
 			}
 		}
 		else
 		{
 			//mail
-			//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during during parsing the config file');
+			mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather during parsing the config file');
 		}
 	}
 	else
 	{
-		//fatal error
+		mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_weather: fatal error');
 	}
 ?>

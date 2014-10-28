@@ -44,7 +44,7 @@
 							else
 							{
 								//mail
-								//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing response');
+								mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing response');
 								break;
 							}
 
@@ -53,35 +53,35 @@
 						if(saveDataToFile($newObject, "forecast.json") == -1)
 						{
 							//mail
-							//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during saving file');
+							mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during saving file');
 						}
 					}
 					else
 					{
 						//mail
-						//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking data structure');
+						mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking data structure');
 					}
 				}
 				else
 				{
 					//mail
-					//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking response code api');
+					mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking response code api');
 				}
 			}
 			else
 			{
 				//mail
-				//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking if the api server respond');
+				mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during checking if the api server respond');
 			}
 		}
 		else 
 		{
 			//mail
-			//mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing the config file');
+			mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem in cron_forecast during parsing the config file');
 		}
 	}
 	else
 	{
-		//fatal error
+		mail($config['mailTo'], 'Weather Server bug repport', 'Weather Server encountered a problem');
 	}
 ?>
