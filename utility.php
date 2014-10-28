@@ -100,6 +100,16 @@
 
 	function getWeatherCode($code)
 	{
+	    //Link OpenWeatherMap codes to Madeleine codes.
+	    /* Here are Madeleine codes :
+	        UnknownWeather = 0,
+            Rainy = 1,
+            SmallStorm = 2,
+            Storm = 3,
+            SmallRain = 4,
+            Cloudy = 5,
+            Sunny = 6,
+	    */
 		    //Missings :
     /*
      Extreme
@@ -132,14 +142,16 @@
 			//Thunderstorm
 			case 200:
 			case 201:
-			case 202:
 			case 210:
 			case 211:
+			case 230:
+			    return 2; //SmallStorm
+			case 202:
 			case 212:
 			case 221:
-			case 230:
 			case 231:
 			case 232:
+			    return 3; //Storm
 			//Dizzle
 			case 300:
 			case 301:
@@ -150,9 +162,11 @@
 			case 313:
 			case 314:
 			case 321:
+			    return 4; //SmallRain
 			//Rain
 			case 500:
 			case 501:
+			    return 4; //SmallRain
 			case 502:
 			case 503:
 			case 504:
@@ -161,8 +175,7 @@
 			case 521:
 			case 522:
 			case 531:
-				return 1;
-				break;
+				return 1; //Rain
 			//Snow
 			case 600:
 			case 601:
@@ -174,21 +187,32 @@
 			case 620:
 			case 621:
 			case 622:
-			return 4;
-			break;
+			    return 2; //SmallStorm
+			//Atmosphere
+			case 701:
+			case 711:
+			case 721:
+			case 731:
+			case 741:
+			case 751:
+			case 761:
+			case 762:
+			case 771:
+			case 781:
+			    return 2; //SmallStorm
 			//Sun
 			case 800:
 			case 801:
-				return 3;
+				return 6; //Sunny
 				break;
 			//Clouds
 			case 802:
 			case 803:
 			case 804:
-				return 2;
+				return 5; //Cloudy
 				break;
 			default:
-				return 0;
+				return 0; //Unknown weather
 				break;
 		}
 	}
