@@ -11,7 +11,7 @@
 			!empty($openWeatherMapConfig["forecast"]["url"]) &&
 			!empty($config["OpenWeatherAPI"]))
 		{
-			$openWeatherMapConfig["forecast"]["params"][] = $openWeatherMapConfig["APIParamName"].'='.$config["OpenWeatherAPI"];
+			$openWeatherMapConfig["weather"]["params"][] = $openWeatherMapConfig["APIParamName"].'='.$config["OpenWeatherAPI"];
 
 			$url = generateFinalUrl($openWeatherMapConfig["weather"]["url"], $openWeatherMapConfig["weather"]["params"]);
 
